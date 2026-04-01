@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAB Window Cleaning | Professional Window & Exterior Cleaning – North Yorkshire</title>
+    <meta name="description" content="Professional window cleaning and exterior cleaning by Andrew Ball. 100% recommended, 5-star reviews. Serving Thirsk, York, Harrogate, Northallerton & surrounding areas.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink: #0a0f1e;
+            --ink-mid: #1c2640;
+            --slate: #4a5568;
+            --mist: #8fa3c0;
+            --ice: #e8f0fb;
+            --sky: #2563eb;
+            --sky-bright: #3b82f6;
+            --sky-glow: rgba(37,99,235,0.15);
+            --clean: #f0f7ff;
+            --white: #ffffff;
+            --gold: #f0a500;
+            --green: #10b981;
+            --radius: 14px;
+            --radius-sm: 8px;
+            --hdr: 84px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            color: var(--ink);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1,h2,h3,h4,h5 {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── SKIP LINK ── */
+        .skip-link {
+            position: absolute; left: -9999px; top: 20px;
+            background: var(--sky); color: #fff; padding: 10px 18px;
+            border-radius: 999px; text-decoration: none; z-index: 2000;
+        }
+        .skip-link:focus { left: 20px; }
+
+        /* ── HEADER ── */
+        .hdr {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            height: var(--hdr);
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(37,99,235,0.08);
+            transition: box-shadow 0.3s;
+        }
+        .hdr.scrolled { box-shadow: 0 2px 20px rgba(10,15,30,0.08); }
+        .hdr-inner {
+            height: 100%; display: flex; align-items: center;
+            justify-content: space-between; gap: 24px;
+            padding: 14px 0;
+        }
+        .logo img { height: 54px; width: auto; display: block; }
+        .nav { display: flex; gap: 2px; }
+        .nav a {
+            text-decoration: none; color: var(--slate);
+            font-family: 'Outfit', sans-serif; font-weight: 600;
+            font-size: 0.875rem; letter-spacing: 0.01em;
+            padding: 7px 12px; border-radius: var(--radius-sm);
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav a:hover, .nav a.active { color: var(--sky); background: var(--sky-glow); }
+        .hdr-actions { display: flex; align-items: center; gap: 12px; }
+        .hdr-phone {
+            display: flex; align-items: center; gap: 8px;
+            text-decoration: none; color: var(--ink-mid);
+            font-weight: 500; font-size: 0.875rem;
+            padding: 7px 13px; border-radius: var(--radius-sm);
+            border: 1.5px solid var(--ice); transition: all 0.2s;
+        }
+        .hdr-phone:hover { border-color: var(--sky); color: var(--sky); background: var(--sky-glow); }
+        .hdr-phone i { color: var(--sky); font-size: 0.8rem; }
+        .btn-hdr {
+            background: var(--sky); color: #fff; border: none;
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            font-size: 0.85rem; letter-spacing: 0.03em;
+            padding: 9px 18px; border-radius: var(--radius-sm);
+            cursor: pointer; text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            display: inline-flex; align-items: center; gap: 7px;
+        }
+        .btn-hdr:hover {
+            background: #1d4ed8; transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+        }
+        .menu-toggle {
+            display: none; background: none; border: none;
+            cursor: pointer; padding: 8px; flex-direction: column; gap: 5px;
+        }
+        .menu-toggle span {
+            display: block; width: 22px; height: 2px;
+            background: var(--ink); border-radius: 2px; transition: 0.3s;
+        }
+
+        /* ── MOBILE NAV ── */
+        .mobile-nav {
+            display: none; position: fixed;
+            top: var(--hdr); left: 0; right: 0; z-index: 999;
+            background: var(--white); border-bottom: 1px solid var(--ice);
+            padding: 20px 24px 28px;
+            box-shadow: 0 8px 32px rgba(10,15,30,0.12);
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav a {
+            display: block; text-decoration: none;
+            color: var(--ink); font-family: 'Outfit', sans-serif;
+            font-weight: 600; font-size: 1.1rem;
+            padding: 12px 0; border-bottom: 1px solid var(--ice);
+        }
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a:hover { color: var(--sky); }
+        .mobile-nav-cta {
+            margin-top: 20px; display: flex; flex-direction: column; gap: 10px;
+        }
+        .mobile-nav-cta a {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; padding: 14px; border-radius: var(--radius-sm);
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            text-decoration: none; font-size: 1rem;
+            border-bottom: none !important;
+        }
+        .mobile-nav-cta a:first-child { background: var(--sky); color: #fff; }
+        .mobile-nav-cta a:last-child { border: 2px solid var(--sky); color: var(--sky); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            padding: calc(var(--hdr) + 80px) 0 90px;
+            position: relative;
+            display: flex; align-items: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background: url('https://images.squarespace-cdn.com/content/v1/6960e9d0f0f61a3bd50e138f/1767958996652-HCXVK43OBQNM8ZSJBKM5/481133781_948171087400449_7035353060468573789_n.jpg?format=2500w') center/cover no-repeat;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                130deg,
+                rgba(10,15,30,0.88) 0%,
+                rgba(10,15,30,0.72) 50%,
+                rgba(37,99,235,0.25) 100%
+            );
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 780px; }
+
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px; border-radius: 999px;
+            color: rgba(255,255,255,0.9); font-size: 0.85rem;
+            font-weight: 500; letter-spacing: 0.04em;
+            margin-bottom: 28px;
+            animation: fadeUp 0.6s ease both;
+        }
+        .hero-eyebrow i { color: var(--gold); }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 6vw, 4.4rem);
+            color: #fff; margin-bottom: 24px;
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+        .hero h1 em { font-style: normal; color: #93c5fd; }
+
+        .hero-sub {
+            font-size: 1.15rem; color: rgba(255,255,255,0.82);
+            max-width: 560px; margin-bottom: 40px;
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        .hero-badges {
+            display: flex; flex-wrap: wrap; gap: 12px;
+            margin-bottom: 44px;
+            animation: fadeUp 0.6s 0.3s ease both;
+        }
+        .badge {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(8px);
+            padding: 10px 18px; border-radius: 999px;
+            color: rgba(255,255,255,0.92); font-size: 0.88rem; font-weight: 500;
+        }
+        .badge i { color: var(--gold); }
+
+        .hero-btns {
+            display: flex; flex-wrap: wrap; gap: 16px;
+            animation: fadeUp 0.6s 0.4s ease both;
+        }
+        .btn-primary-lg {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--sky); color: #fff;
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            font-size: 1rem; letter-spacing: 0.02em;
+            padding: 16px 32px; border-radius: var(--radius-sm);
+            text-decoration: none; border: none; cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 8px 28px rgba(37,99,235,0.4);
+        }
+        .btn-primary-lg:hover {
+            background: #1d4ed8; transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(37,99,235,0.5);
+        }
+        .btn-ghost-lg {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-family: 'Outfit', sans-serif; font-weight: 600;
+            font-size: 1rem; padding: 16px 32px;
+            border-radius: var(--radius-sm); text-decoration: none;
+            backdrop-filter: blur(6px); transition: all 0.25s;
+        }
+        .btn-ghost-lg:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── TRUST BAR ── */
+        .trust-bar {
+            background: var(--ink-mid); padding: 20px 0;
+        }
+        .trust-inner {
+            display: flex; align-items: center; justify-content: space-around;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .trust-item {
+            display: flex; align-items: center; gap: 10px;
+            color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 500;
+        }
+        .trust-item i { color: var(--sky-bright); font-size: 1rem; }
+
+        /* ── SECTION BASICS ── */
+        section { padding: 100px 0; }
+        .sec-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--sky);
+            margin-bottom: 14px;
+        }
+        .sec-label::before {
+            content: ''; width: 20px; height: 2px; background: var(--sky);
+        }
+        .sec-title { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 16px; }
+        .sec-sub { color: var(--slate); max-width: 520px; font-size: 1.05rem; }
+
+        /* ── SERVICES ── */
+        .services { background: var(--clean); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px; margin-top: 56px;
+        }
+        .svc-card {
+            background: var(--white);
+            border: 1px solid rgba(37,99,235,0.1);
+            border-radius: var(--radius);
+            padding: 36px 30px;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
+        }
+        .svc-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sky), var(--green));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.35s;
+        }
+        .svc-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(37,99,235,0.12); border-color: rgba(37,99,235,0.25); }
+        .svc-card:hover::before { transform: scaleX(1); }
+        .svc-icon {
+            width: 56px; height: 56px;
+            background: var(--clean);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 22px;
+        }
+        .svc-icon i { font-size: 1.4rem; color: var(--sky); }
+        .svc-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .svc-card p { color: var(--slate); flex-grow: 1; margin-bottom: 24px; font-size: 0.95rem; }
+        .svc-btns { display: flex; gap: 10px; }
+        .btn-svc-book {
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
+            background: var(--sky); color: #fff;
+            font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.88rem;
+            padding: 10px 16px; border-radius: var(--radius-sm);
+            text-decoration: none; transition: background 0.2s;
+        }
+        .btn-svc-book:hover { background: #1d4ed8; }
+        .btn-svc-more {
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
+            background: transparent; color: var(--sky);
+            border: 1.5px solid rgba(37,99,235,0.3);
+            font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.88rem;
+            padding: 10px 16px; border-radius: var(--radius-sm);
+            text-decoration: none; transition: all 0.2s;
+        }
+        .btn-svc-more:hover { background: var(--sky-glow); border-color: var(--sky); }
+
+        /* ── BEFORE/AFTER ── */
+        .ba-section { background: var(--white); }
+        .ba-wrapper { max-width: 860px; margin: 56px auto 0; }
+        .ba-slider {
+            position: relative; border-radius: 18px; overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: 0 24px 64px rgba(10,15,30,0.18);
+            user-select: none;
+        }
+        .ba-slider img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+        }
+        .ba-after { z-index: 2; clip-path: inset(0 50% 0 0); }
+        .ba-label {
+            position: absolute; top: 20px; z-index: 6;
+            background: rgba(10,15,30,0.72); backdrop-filter: blur(6px);
+            color: #fff; padding: 6px 14px; font-size: 0.8rem;
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            border-radius: 999px; pointer-events: none;
+        }
+        .ba-label-after { left: 20px; border: 1px solid var(--green); color: #6ee7b7; }
+        .ba-label-before { right: 20px; border: 1px solid rgba(255,255,255,0.3); }
+        .ba-divider {
+            position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+            background: rgba(255,255,255,0.8); z-index: 4; pointer-events: none;
+        }
+        .ba-handle {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px; height: 48px; z-index: 7;
+            background: #fff; border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 3px rgba(37,99,235,0.3);
+            cursor: ew-resize; display: flex; align-items: center; justify-content: center;
+        }
+        .ba-handle svg { width: 18px; height: 18px; fill: var(--sky); }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { background: var(--clean); }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px; margin-top: 56px;
+        }
+        .review-card {
+            background: var(--white);
+            border: 1px solid rgba(37,99,235,0.1);
+            border-radius: var(--radius); padding: 32px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .review-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(37,99,235,0.1); }
+        .review-stars { display: flex; gap: 3px; margin-bottom: 20px; }
+        .review-stars i { color: var(--gold); font-size: 0.95rem; }
+        .review-text {
+            color: var(--slate); font-size: 0.97rem; line-height: 1.75;
+            font-style: italic; margin-bottom: 24px;
+        }
+        .review-author { display: flex; align-items: center; gap: 14px; }
+        .review-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--clean); display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0;
+        }
+        .review-avatar i { color: var(--mist); font-size: 1.1rem; }
+        .review-name { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.95rem; }
+        .review-source { font-size: 0.8rem; color: var(--mist); }
+
+        /* ── AREAS MAP ── */
+        .areas-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px; align-items: start;
+            margin-top: 48px;
+        }
+        .areas-left {}
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; margin-bottom: 24px;
+        }
+        .map-wrap {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(10,15,30,0.12);
+            border: 1px solid rgba(37,99,235,0.1);
+            aspect-ratio: 4/3;
+            position: relative;
+        }
+        .map-wrap iframe {
+            width: 100%; height: 100%;
+            border: 0; display: block;
+        }
+        @media (max-width: 860px) {
+            .areas-layout { grid-template-columns: 1fr; gap: 32px; }
+            .map-wrap { aspect-ratio: 16/9; }
+        }
+        @media (max-width: 480px) {
+            .areas-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .area-chip {
+            background: var(--clean); border: 1px solid rgba(37,99,235,0.12);
+            border-radius: var(--radius-sm); padding: 14px 18px;
+            text-align: center; font-weight: 500;
+            font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+            transition: all 0.25s; color: var(--ink-mid);
+        }
+        .area-chip:hover {
+            background: var(--sky-glow); border-color: var(--sky);
+            color: var(--sky); transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.12);
+        }
+        .areas-note { text-align: center; color: var(--slate); margin-bottom: 28px; }
+        .areas-cta { text-align: center; }
+
+        /* ── CONTACT ── */
+        .contact { background: var(--ink-mid); position: relative; overflow: hidden; }
+        .contact::before {
+            content: ''; position: absolute;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .contact .sec-label { color: #93c5fd; }
+        .contact .sec-label::before { background: #93c5fd; }
+        .contact .sec-title { color: #fff; }
+        .contact .sec-sub { color: rgba(255,255,255,0.7); }
+        .contact-layout {
+            display: grid; grid-template-columns: 1fr 1.4fr;
+            gap: 60px; margin-top: 56px; align-items: start;
+        }
+        .contact-info { color: rgba(255,255,255,0.85); }
+        .contact-info h3 {
+            font-size: 1.4rem; color: #fff; margin-bottom: 20px;
+        }
+        .contact-info p { font-size: 0.97rem; line-height: 1.7; margin-bottom: 32px; }
+        .cinfo-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+        .cinfo-list li {
+            display: flex; align-items: center; gap: 14px;
+            font-size: 0.97rem;
+        }
+        .cinfo-list li i {
+            width: 36px; height: 36px;
+            background: rgba(59,130,246,0.2);
+            border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; color: var(--sky-bright); font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .cinfo-list a { color: rgba(255,255,255,0.9); text-decoration: none; }
+        .cinfo-list a:hover { color: #93c5fd; }
+
+        .form-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 18px; padding: 40px;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .fg { margin-bottom: 18px; }
+        .fg label {
+            display: block; margin-bottom: 8px;
+            font-size: 0.85rem; font-weight: 600;
+            color: rgba(255,255,255,0.8); letter-spacing: 0.02em;
+        }
+        .fg input, .fg select, .fg textarea {
+            width: 100%; padding: 12px 16px;
+            background: rgba(255,255,255,0.07);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-sm);
+            color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.97rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .fg input::placeholder, .fg textarea::placeholder { color: rgba(255,255,255,0.4); }
+        .fg select option { background: var(--ink-mid); color: #fff; }
+        .fg input:focus, .fg select:focus, .fg textarea:focus {
+            outline: none; border-color: var(--sky-bright);
+            background: rgba(59,130,246,0.1);
+        }
+        .btn-submit {
+            width: 100%; padding: 16px;
+            background: var(--sky); color: #fff;
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            font-size: 1rem; letter-spacing: 0.03em;
+            border: none; border-radius: var(--radius-sm); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: all 0.25s;
+            box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+            margin-top: 8px;
+        }
+        .btn-submit:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 12px 32px rgba(37,99,235,0.5); }
+        .form-note { margin-top: 14px; text-align: center; color: rgba(255,255,255,0.5); font-size: 0.83rem; }
+        .form-note a { color: #93c5fd; }
+        .form-msg {
+            margin-top: 16px; padding: 14px 18px;
+            border-radius: var(--radius-sm); font-weight: 600;
+            font-size: 0.95rem; display: none;
+        }
+        .form-msg.ok { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); color: #6ee7b7; }
+        .form-msg.err { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--ink); color: rgba(255,255,255,0.65);
+            padding: 72px 0 36px;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 1.6fr repeat(3, 1fr);
+            gap: 40px; margin-bottom: 56px;
+        }
+        .ft-brand p { font-size: 0.95rem; line-height: 1.7; margin: 16px 0 24px; }
+        .ft-socials { display: flex; gap: 10px; }
+        .ft-socials a {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.7); text-decoration: none;
+            transition: all 0.25s;
+        }
+        .ft-socials a:hover { background: var(--sky); color: #fff; transform: translateY(-2px); }
+        .ft-col h4 {
+            font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+            color: #fff; margin-bottom: 18px; letter-spacing: 0.02em;
+        }
+        .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .ft-col ul a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.93rem; transition: color 0.2s; }
+        .ft-col ul a:hover { color: #fff; }
+        .ft-contact-item { display: flex; align-items: center; gap: 10px; }
+        .ft-contact-item i { color: var(--sky-bright); width: 16px; font-size: 0.85rem; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 32px; text-align: center; font-size: 0.88rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        .footer-bottom a:hover { color: #fff; }
+
+        /* ── SHARED BUTTONS ── */
+        .btn-sky {
+            display: inline-flex; align-items: center; gap: 9px;
+            background: var(--sky); color: #fff;
+            font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.97rem;
+            padding: 14px 28px; border-radius: var(--radius-sm);
+            text-decoration: none; transition: all 0.25s;
+            box-shadow: 0 6px 20px rgba(37,99,235,0.25);
+        }
+        .btn-sky:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,99,235,0.4); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 992px) {
+            .nav, .hdr-actions { display: none; }
+            .menu-toggle { display: flex; }
+            .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 640px) {
+            section { padding: 64px 0; }
+            .hero { padding: calc(var(--hdr) + 48px) 0 64px; min-height: auto; }
+            .hero h1 { font-size: 2.1rem; }
+            .hero-sub { font-size: 1rem; }
+            .hero-badges { gap: 8px; }
+            .badge { padding: 8px 14px; font-size: 0.82rem; }
+            .hero-btns { flex-direction: column; }
+            .btn-ghost-lg, .btn-primary-lg { width: 100%; justify-content: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
+            .trust-inner { gap: 12px; justify-content: flex-start; }
+            .sec-title { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .svc-btns { flex-direction: column; }
+            .btn-svc-book, .btn-svc-more { width: 100%; }
+        }
+        @media (max-width: 420px) {
+            .container { padding: 0 16px; }
+            .hero h1 { font-size: 1.85rem; }
+            .hero-eyebrow { font-size: 0.78rem; padding: 6px 14px; }
+        }
+    </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- HEADER -->
+<header class="hdr" id="hdr">
+    <div class="container">
+        <div class="hdr-inner">
+            <a href="#home" class="logo">
+                <img src="https://images.squarespace-cdn.com/content/v1/6960e9d0f0f61a3bd50e138f/1767959000146-M6J87VNO81PGYWQBIFDL/Screenshot_2025-08-12_135134-removebg-preview.png?format=1500w"
+                     alt="FAB Window Cleaning Services">
+            </a>
+            <nav class="nav">
+                <a href="#home" class="active">Home</a>
+                <a href="#services">Services</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#areas">Areas</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="hdr-actions">
+                <a href="tel:+447802494062" class="hdr-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>07802 494062</span>
+                </a>
+                <a href="#contact" class="btn-hdr">
+                    <i class="fas fa-calendar-alt"></i> Get Quote
+                </a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#areas">Areas</a>
+    <a href="#contact">Contact</a>
+    <div class="mobile-nav-cta">
+        <a href="tel:+447802494062"><i class="fas fa-phone"></i> 07802 494062</a>
+        <a href="#contact"><i class="fas fa-calendar-alt"></i> Get Free Quote</a>
+    </div>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <i class="fas fa-star"></i>
+                5-Star Rated &nbsp;·&nbsp; Fully Insured &nbsp;·&nbsp; Est. 2021
+            </div>
+            <h1>Professional<br><em>Window Cleaning</em><br>North Yorkshire</h1>
+            <p class="hero-sub">Crystal-clear results, every visit. Trusted by hundreds of homeowners and businesses across the region.</p>
+            <div class="hero-badges">
+                <div class="badge"><i class="fas fa-shield-alt"></i> Fully Insured</div>
+                <div class="badge"><i class="fas fa-thumbs-up"></i> 100% Recommended</div>
+                <div class="badge"><i class="fas fa-check-circle"></i> Streak-Free Guarantee</div>
+            </div>
+            <div class="hero-btns">
+                <a href="#contact" class="btn-primary-lg">
+                    <i class="fas fa-calendar-alt"></i> Get Free Quote
+                </a>
+                <a href="tel:+447802494062" class="btn-ghost-lg">
+                    <i class="fas fa-phone"></i> Call Andrew: 07802 494062
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+    <div class="container">
+        <div class="trust-inner">
+            <div class="trust-item"><i class="fas fa-award"></i> Established 2021</div>
+            <div class="trust-item"><i class="fas fa-shield-alt"></i> Fully Insured</div>
+            <div class="trust-item"><i class="fas fa-leaf"></i> Eco-Friendly Methods</div>
+            <div class="trust-item"><i class="fas fa-clock"></i> Prompt & Reliable</div>
+            <div class="trust-item"><i class="fas fa-map-marker-alt"></i> North Yorkshire Based</div>
+        </div>
+    </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="sec-label">What We Offer</div>
+        <h2 class="sec-title">Our Professional Services</h2>
+        <p class="sec-sub">Comprehensive exterior cleaning for homes and businesses. No job too big or small.</p>
+        <div class="services-grid">
+
+            <div class="svc-card">
+                <div class="svc-icon"><i class="fas fa-window-maximize"></i></div>
+                <h3>Residential Window Cleaning</h3>
+                <p>Crystal-clear, streak-free results every time. Professional cleaning for all home window types using proven traditional methods.</p>
+                <div class="svc-btns">
+                    <a href="#contact" class="btn-svc-book"><i class="fas fa-calendar-check"></i> Book</a>
+                    <a href="window-cleaning.html" class="btn-svc-more"><i class="fas fa-arrow-right"></i> Learn More</a>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-icon"><i class="fas fa-building"></i></div>
+                <h3>Commercial Window Cleaning</h3>
+                <p>Tailored cleaning solutions for shops, offices, and commercial premises. Regular maintenance contracts available.</p>
+                <div class="svc-btns">
+                    <a href="#contact" class="btn-svc-book"><i class="fas fa-calendar-check"></i> Book</a>
+                    <a href="commercial-cleaning.html" class="btn-svc-more"><i class="fas fa-arrow-right"></i> Learn More</a>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-icon"><i class="fas fa-tint"></i></div>
+                <h3>Gutter Cleaning</h3>
+                <p>Full debris removal and downpipe clearance to protect your property from costly water damage.</p>
+                <div class="svc-btns">
+                    <a href="#contact" class="btn-svc-book"><i class="fas fa-calendar-check"></i> Book</a>
+                    <a href="gutter-cleaning.html" class="btn-svc-more"><i class="fas fa-arrow-right"></i> Learn More</a>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-icon"><i class="fas fa-home"></i></div>
+                <h3>Soffit & Fascia Cleaning</h3>
+                <p>Restore your home's kerb appeal by removing moss, algae, and years of built-up grime from soffits and fascias.</p>
+                <div class="svc-btns">
+                    <a href="#contact" class="btn-svc-book"><i class="fas fa-calendar-check"></i> Book</a>
+                    <a href="soffit-cleaning.html" class="btn-svc-more"><i class="fas fa-arrow-right"></i> Learn More</a>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-icon"><i class="fas fa-sun"></i></div>
+                <h3>Conservatory Cleaning</h3>
+                <p>Professional cleaning of conservatory roofs, windows, and frames. Remove algae, grime, and water marks for a like-new finish.</p>
+                <div class="svc-btns">
+                    <a href="#contact" class="btn-svc-book"><i class="fas fa-calendar-check"></i> Book</a>
+                    <a href="#contact" class="btn-svc-more"><i class="fas fa-comments"></i> Get Quote</a>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-icon"><i class="fas fa-spray-can"></i></div>
+                <h3>UPVC Cleaning</h3>
+                <p>Restore UPVC windows, doors, and frames to their original brilliant white. Effectively removes staining and discolouration.</p>
+                <div class="svc-btns">
+                    <a href="#contact" class="btn-svc-book"><i class="fas fa-calendar-check"></i> Book</a>
+                    <a href="#contact" class="btn-svc-more"><i class="fas fa-comments"></i> Get Quote</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- BEFORE/AFTER -->
+<section class="ba-section">
+    <div class="container">
+        <div class="sec-label">The Results</div>
+        <h2 class="sec-title">See the Transformation</h2>
+        <p class="sec-sub">Drag the slider to reveal the before and after — the proof is in the finish.</p>
+        <div class="ba-wrapper">
+            <div class="ba-slider" id="baSlider">
+                <img class="ba-before"
+                     src="https://image2url.com/r2/default/images/1768585974011-ad49a0ca-6cab-4663-89f2-3d386f49f85f.png"
+                     alt="Before window cleaning">
+                <img class="ba-after"
+                     src="https://image2url.com/r2/default/images/1768585921810-6c84b691-1351-4dc5-955b-a80161674816.png"
+                     alt="After window cleaning">
+                <div class="ba-label ba-label-after">After</div>
+                <div class="ba-label ba-label-before">Before</div>
+                <div class="ba-divider" id="baDivider"></div>
+                <div class="ba-handle" id="baHandle">
+                    <svg viewBox="0 0 24 24"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6zM15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <div class="sec-label">Customer Reviews</div>
+        <h2 class="sec-title">What Our Customers Say</h2>
+        <p class="sec-sub">Genuine reviews from happy customers across North Yorkshire.</p>
+        <div class="reviews-grid">
+
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"FAB window cleaners were highly recommended. Andrew came around and did a fabulous job of my windows. We'd had our roof redone and the windows were a mess — he did a fantastic job."</p>
+                <div class="review-author">
+                    <div class="review-avatar"><i class="fas fa-user"></i></div>
+                    <div>
+                        <div class="review-name">Sara Towers</div>
+                        <div class="review-source">Google Review</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"Cleaned my daughter's huge windows — what a cracking job from a cracking guy! Professional service and excellent results. Couldn't recommend highly enough."</p>
+                <div class="review-author">
+                    <div class="review-avatar"><i class="fas fa-user"></i></div>
+                    <div>
+                        <div class="review-name">Cheryl Blaymires</div>
+                        <div class="review-source">Google Review</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"Andrew is a very easy person to deal with and very professional. Cleaned all our UPVC soffits — some of which had never seen water for years — and did an excellent job at a very affordable price."</p>
+                <div class="review-author">
+                    <div class="review-avatar"><i class="fas fa-user"></i></div>
+                    <div>
+                        <div class="review-name">Dianne Cleghorn</div>
+                        <div class="review-source">Google Review</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas" id="areas">
+    <div class="container">
+        <div class="sec-label">Coverage</div>
+        <h2 class="sec-title">Areas We Serve</h2>
+        <p class="sec-sub">Professional cleaning across North Yorkshire — from market towns to surrounding villages.</p>
+
+        <div class="areas-layout">
+            <!-- Left: chips + CTA -->
+            <div class="areas-left">
+                <div class="areas-grid">
+                    <div class="area-chip">Thirsk</div>
+                    <div class="area-chip">Northallerton</div>
+                    <div class="area-chip">York</div>
+                    <div class="area-chip">Harrogate</div>
+                    <div class="area-chip">Easingwold</div>
+                    <div class="area-chip">Boroughbridge</div>
+                    <div class="area-chip">Ripon</div>
+                    <div class="area-chip">Knaresborough</div>
+                </div>
+                <p class="areas-note" style="text-align:left; margin-bottom: 24px;">…plus all surrounding villages and towns. Not sure if we cover you? Just ask!</p>
+                <a href="#contact" class="btn-sky"><i class="fas fa-map-marker-alt"></i> Check Your Area</a>
+            </div>
+
+            <!-- Right: Google Map -->
+            <div class="map-wrap">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d148018.0!2d-1.45!3d54.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1775044446893!5m2!1sen!2suk"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="FAB Window Cleaning service area – North Yorkshire">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="sec-label">Get In Touch</div>
+        <h2 class="sec-title">Get Your Free Quote Today</h2>
+        <p class="sec-sub">Fill out the form and Andrew will get back to you within 24 hours — no obligation.</p>
+        <div class="contact-layout">
+            <div class="contact-info">
+                <h3>Ready to get started?</h3>
+                <p>Whether you need a one-off clean or a regular maintenance schedule, Andrew provides a friendly, professional service with consistently brilliant results.</p>
+                <ul class="cinfo-list">
+                    <li><i class="fas fa-phone"></i><a href="tel:+447802494062">07802 494062</a></li>
+                    <li><i class="fas fa-envelope"></i><a href="mailto:fabwindowcleaning@gmail.com">fabwindowcleaning@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i><span>Serving all of North Yorkshire</span></li>
+                    <li><i class="fab fa-facebook-f"></i><a href="https://facebook.com/FABWINDOWCLEANINGSERVICES" target="_blank">Find us on Facebook</a></li>
+                </ul>
+            </div>
+            <div class="form-card">
+                <form id="quoteForm" action="https://formspree.io/f/xbddjykd" method="POST">
+                    <div class="form-row">
+                        <div class="fg">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="fg">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="07xxx xxxxxx">
+                        </div>
+                    </div>
+                    <div class="fg">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com">
+                    </div>
+                    <div class="fg">
+                        <label for="service">Service Required *</label>
+                        <select id="service" name="service" required>
+                            <option value="" disabled selected>Select a service…</option>
+                            <option value="window-cleaning">Window Cleaning</option>
+                            <option value="gutter-cleaning">Gutter Cleaning</option>
+                            <option value="soffit-cleaning">Soffit & Fascia Cleaning</option>
+                            <option value="conservatory">Conservatory Cleaning</option>
+                            <option value="commercial">Commercial Cleaning</option>
+                            <option value="upvc">UPVC Cleaning</option>
+                        </select>
+                    </div>
+                    <div class="fg">
+                        <label for="message">Additional Details</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Tell Andrew about your property or any specific requirements…"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Send Quote Request
+                    </button>
+                    <p class="form-note">
+                        Or call directly: <a href="tel:+447802494062">07802 494062</a>
+                    </p>
+                    <div class="form-msg" id="formMsg"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="ft-brand">
+                <img src="https://images.squarespace-cdn.com/content/v1/6960e9d0f0f61a3bd50e138f/1767959000146-M6J87VNO81PGYWQBIFDL/Screenshot_2025-08-12_135134-removebg-preview.png?format=1500w"
+                     alt="FAB Window Cleaning" style="height:50px;filter:brightness(0) invert(1);opacity:0.9;">
+                <p>Professional exterior cleaning by Andrew Ball. Fully insured, 5-star rated, proudly serving North Yorkshire since 2021.</p>
+                <div class="ft-socials">
+                    <a href="https://facebook.com/FABWINDOWCLEANINGSERVICES" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="tel:+447802494062" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                    <a href="mailto:fabwindowcleaning@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="ft-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#areas">Areas</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="window-cleaning.html">Window Cleaning</a></li>
+                    <li><a href="gutter-cleaning.html">Gutter Cleaning</a></li>
+                    <li><a href="soffit-cleaning.html">Soffit Cleaning</a></li>
+                    <li><a href="commercial-cleaning.html">Commercial</a></li>
+                    <li><a href="#contact">Conservatory</a></li>
+                    <li><a href="#contact">UPVC Cleaning</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li class="ft-contact-item"><i class="fas fa-phone"></i><a href="tel:+447802494062">07802 494062</a></li>
+                    <li class="ft-contact-item"><i class="fas fa-envelope"></i><a href="mailto:fabwindowcleaning@gmail.com">fabwindowcleaning@gmail.com</a></li>
+                    <li class="ft-contact-item"><i class="fas fa-map-marker-alt"></i><span>North Yorkshire</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span id="yr"></span> FAB Window Cleaning Services. All rights reserved.</span>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Header scroll
+    const hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', () => {
+        hdr.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Mobile nav
+    const toggle = document.getElementById('menuToggle');
+    const mNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => {
+        mNav.classList.toggle('open');
+        const bars = toggle.querySelectorAll('span');
+        const open = mNav.classList.contains('open');
+        bars[0].style.transform = open ? 'rotate(45deg) translate(5px, 5px)' : '';
+        bars[1].style.opacity = open ? '0' : '1';
+        bars[2].style.transform = open ? 'rotate(-45deg) translate(7px, -6px)' : '';
+    });
+    document.addEventListener('click', (e) => {
+        if (!mNav.contains(e.target) && !toggle.contains(e.target)) {
+            mNav.classList.remove('open');
+            toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
+        }
+    });
+    mNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            mNav.classList.remove('open');
+            toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const id = this.getAttribute('href').slice(1);
+            if (!id) return;
+            const el = document.getElementById(id);
+            if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 72, behavior: 'smooth' }); }
+        });
+    });
+
+    // Active nav on scroll
+    window.addEventListener('scroll', () => {
+        const sections = ['home','services','testimonials','areas','contact'];
+        let cur = '';
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && window.scrollY >= el.offsetTop - 120) cur = id;
+        });
+        document.querySelectorAll('.nav a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${cur}`);
+        });
+    });
+
+    // Before/After slider
+    window.addEventListener('load', () => {
+        const container = document.getElementById('baSlider');
+        const after = container.querySelector('.ba-after');
+        const handle = document.getElementById('baHandle');
+        const divider = document.getElementById('baDivider');
+        let dragging = false;
+
+        function update(x) {
+            const r = container.getBoundingClientRect();
+            let pct = Math.max(0, Math.min(100, (x - r.left) / r.width * 100));
+            after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+            handle.style.left = `${pct}%`;
+            divider.style.left = `${pct}%`;
+        }
+
+        handle.addEventListener('mousedown', (e) => { dragging = true; update(e.clientX); e.preventDefault(); });
+        handle.addEventListener('touchstart', (e) => { dragging = true; update(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+        window.addEventListener('mousemove', (e) => { if (dragging) update(e.clientX); });
+        window.addEventListener('touchmove', (e) => { if (dragging) update(e.touches[0].clientX); }, { passive: false });
+        window.addEventListener('mouseup', () => dragging = false);
+        window.addEventListener('touchend', () => dragging = false);
+
+        const r = container.getBoundingClientRect();
+        update(r.left + r.width / 2);
+    });
+
+    // Form
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('quoteForm');
+        const msg = document.getElementById('formMsg');
+        if (!form) return;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('.btn-submit');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+            btn.disabled = true;
+            msg.style.display = 'none';
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    msg.className = 'form-msg ok';
+                    msg.innerHTML = '<i class="fas fa-check-circle"></i> Request sent! Andrew will be in touch within 24 hours.';
+                    form.reset();
+                } else { throw new Error(); }
+            } catch {
+                msg.className = 'form-msg err';
+                msg.innerHTML = '<i class="fas fa-exclamation-circle"></i> Something went wrong. Please call 07802 494062 directly.';
+            }
+
+            msg.style.display = 'block';
+            msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            btn.innerHTML = orig;
+            btn.disabled = false;
+            setTimeout(() => { msg.style.display = 'none'; }, 10000);
+        });
+    });
+</script>
+</body>
+</html>
