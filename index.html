@@ -109,7 +109,7 @@
         }
         .menu-toggle {
             display: none; background: none; border: none;
-            cursor: pointer; padding: 8px; flex-direction: column; gap: 5px;
+            cursor: pointer; padding: 10px 8px; flex-direction: column; gap: 5px; align-items: center; -webkit-tap-highlight-color: transparent;
         }
         .menu-toggle span {
             display: block; width: 22px; height: 2px;
@@ -1020,25 +1020,29 @@
     // Mobile nav
     const toggle = document.getElementById('menuToggle');
     const mNav = document.getElementById('mobileNav');
-    toggle.addEventListener('click', () => {
-        mNav.classList.toggle('open');
+
+    function closeMobileNav() {
+        mNav.classList.remove('open');
+        toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
+    }
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = mNav.classList.toggle('open');
         const bars = toggle.querySelectorAll('span');
-        const open = mNav.classList.contains('open');
-        bars[0].style.transform = open ? 'rotate(45deg) translate(5px, 5px)' : '';
-        bars[1].style.opacity = open ? '0' : '1';
-        bars[2].style.transform = open ? 'rotate(-45deg) translate(7px, -6px)' : '';
+        bars[0].style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
+        bars[1].style.opacity = isOpen ? '0' : '1';
+        bars[2].style.transform = isOpen ? 'rotate(-45deg) translate(7px, -6px)' : '';
     });
+
     document.addEventListener('click', (e) => {
         if (!mNav.contains(e.target) && !toggle.contains(e.target)) {
-            mNav.classList.remove('open');
-            toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
+            closeMobileNav();
         }
     });
+
     mNav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            mNav.classList.remove('open');
-            toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
-        });
+        a.addEventListener('click', closeMobileNav);
     });
 
     // Smooth scroll
