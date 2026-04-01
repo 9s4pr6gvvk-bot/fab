@@ -118,13 +118,21 @@
 
         /* ── MOBILE NAV ── */
         .mobile-nav {
-            display: none; position: fixed;
+            position: fixed;
             top: var(--hdr); left: 0; right: 0; z-index: 999;
             background: var(--white); border-bottom: 1px solid var(--ice);
             padding: 20px 24px 28px;
             box-shadow: 0 8px 32px rgba(10,15,30,0.12);
+            transform: translateY(-10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
-        .mobile-nav.open { display: block; }
+        .mobile-nav.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
         .mobile-nav a {
             display: block; text-decoration: none;
             color: var(--ink); font-family: 'Outfit', sans-serif;
@@ -1007,118 +1015,147 @@
     </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
     // Header scroll
-    const hdr = document.getElementById('hdr');
-    window.addEventListener('scroll', () => {
+    var hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', function() {
         hdr.classList.toggle('scrolled', window.scrollY > 10);
     });
 
-    // Mobile nav
-    const toggle = document.getElementById('menuToggle');
-    const mNav = document.getElementById('mobileNav');
+    // ── MOBILE NAV ──
+    var toggle = document.getElementById('menuToggle');
+    var mNav = document.getElementById('mobileNav');
 
-    function closeMobileNav() {
-        mNav.classList.remove('open');
-        toggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
+    function openMenu() {
+        mNav.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        var bars = toggle.querySelectorAll('span');
+        bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        bars[1].style.opacity = '0';
+        bars[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
     }
 
-    toggle.addEventListener('click', (e) => {
+    function closeMenu() {
+        mNav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        var bars = toggle.querySelectorAll('span');
+        bars[0].style.transform = '';
+        bars[1].style.opacity = '1';
+        bars[2].style.transform = '';
+    }
+
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
         e.stopPropagation();
-        const isOpen = mNav.classList.toggle('open');
-        const bars = toggle.querySelectorAll('span');
-        bars[0].style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
-        bars[1].style.opacity = isOpen ? '0' : '1';
-        bars[2].style.transform = isOpen ? 'rotate(-45deg) translate(7px, -6px)' : '';
+        mNav.classList.contains('open') ? closeMenu() : openMenu();
     });
 
-    document.addEventListener('click', (e) => {
-        if (!mNav.contains(e.target) && !toggle.contains(e.target)) {
-            closeMobileNav();
+    document.addEventListener('click', function(e) {
+        if (mNav.classList.contains('open') && !mNav.contains(e.target) && !toggle.contains(e.target)) {
+            closeMenu();
         }
     });
 
-    mNav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', closeMobileNav);
+    mNav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', closeMenu);
     });
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
+    // ── SMOOTH SCROLL ──
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
         a.addEventListener('click', function(e) {
-            const id = this.getAttribute('href').slice(1);
+            var id = this.getAttribute('href').slice(1);
             if (!id) return;
-            const el = document.getElementById(id);
-            if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 72, behavior: 'smooth' }); }
+            var el = document.getElementById(id);
+            if (el) {
+                e.preventDefault();
+                window.scrollTo({ top: el.offsetTop - 84, behavior: 'smooth' });
+            }
         });
     });
 
-    // Active nav on scroll
-    window.addEventListener('scroll', () => {
-        const sections = ['home','services','testimonials','areas','contact'];
-        let cur = '';
-        sections.forEach(id => {
-            const el = document.getElementById(id);
+    // ── ACTIVE NAV ON SCROLL ──
+    window.addEventListener('scroll', function() {
+        var sections = ['home','services','testimonials','areas','contact'];
+        var cur = '';
+        sections.forEach(function(id) {
+            var el = document.getElementById(id);
             if (el && window.scrollY >= el.offsetTop - 120) cur = id;
         });
-        document.querySelectorAll('.nav a').forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${cur}`);
+        document.querySelectorAll('.nav a').forEach(function(a) {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
         });
     });
 
-    // Before/After slider
-    window.addEventListener('load', () => {
-        const container = document.getElementById('baSlider');
-        const after = container.querySelector('.ba-after');
-        const handle = document.getElementById('baHandle');
-        const divider = document.getElementById('baDivider');
-        let dragging = false;
+    // ── BEFORE/AFTER SLIDER ──
+    var slider = document.getElementById('baSlider');
+    if (slider) {
+        var afterImg = slider.querySelector('.ba-after');
+        var handle = document.getElementById('baHandle');
+        var divider = document.getElementById('baDivider');
+        var dragging = false;
 
-        function update(x) {
-            const r = container.getBoundingClientRect();
-            let pct = Math.max(0, Math.min(100, (x - r.left) / r.width * 100));
-            after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-            handle.style.left = `${pct}%`;
-            divider.style.left = `${pct}%`;
+        function updateSlider(x) {
+            var r = slider.getBoundingClientRect();
+            var pct = Math.max(0, Math.min(100, (x - r.left) / r.width * 100));
+            afterImg.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+            handle.style.left = pct + '%';
+            divider.style.left = pct + '%';
         }
 
-        handle.addEventListener('mousedown', (e) => { dragging = true; update(e.clientX); e.preventDefault(); });
-        handle.addEventListener('touchstart', (e) => { dragging = true; update(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
-        window.addEventListener('mousemove', (e) => { if (dragging) update(e.clientX); });
-        window.addEventListener('touchmove', (e) => { if (dragging) update(e.touches[0].clientX); }, { passive: false });
-        window.addEventListener('mouseup', () => dragging = false);
-        window.addEventListener('touchend', () => dragging = false);
+        handle.addEventListener('mousedown', function(e) { dragging = true; updateSlider(e.clientX); e.preventDefault(); });
+        handle.addEventListener('touchstart', function(e) { dragging = true; updateSlider(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+        window.addEventListener('mousemove', function(e) { if (dragging) updateSlider(e.clientX); });
+        window.addEventListener('touchmove', function(e) { if (dragging) updateSlider(e.touches[0].clientX); }, { passive: false });
+        window.addEventListener('mouseup', function() { dragging = false; });
+        window.addEventListener('touchend', function() { dragging = false; });
 
-        const r = container.getBoundingClientRect();
-        update(r.left + r.width / 2);
-    });
+        var r = slider.getBoundingClientRect();
+        updateSlider(r.left + r.width / 2);
+    }
 
-    // Form
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('quoteForm');
-        const msg = document.getElementById('formMsg');
-        if (!form) return;
-
-        form.addEventListener('submit', async (e) => {
+    // ── CONTACT FORM ──
+    var form = document.getElementById('quoteForm');
+    var msg = document.getElementById('formMsg');
+    if (form && msg) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const btn = form.querySelector('.btn-submit');
-            const orig = btn.innerHTML;
+            var btn = form.querySelector('.btn-submit');
+            var orig = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
             btn.disabled = true;
             msg.style.display = 'none';
 
-            try {
-                const res = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(function(res) {
                 if (res.ok) {
                     msg.className = 'form-msg ok';
                     msg.innerHTML = '<i class="fas fa-check-circle"></i> Request sent! Andrew will be in touch within 24 hours.';
                     form.reset();
-                } else { throw new Error(); }
-            } catch {
-                msg.className = 'for
+                } else {
+                    throw new Error('failed');
+                }
+            }).catch(function() {
+                msg.className = 'form-msg err';
+                msg.innerHTML = '<i class="fas fa-exclamation-circle"></i> Something went wrong. Please call 07802 494062 directly.';
+            }).finally(function() {
+                msg.style.display = 'block';
+                msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                btn.innerHTML = orig;
+                btn.disabled = false;
+                setTimeout(function() { msg.style.display = 'none'; }, 10000);
+            });
+        });
+    }
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
